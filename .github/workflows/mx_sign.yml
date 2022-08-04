@@ -1,0 +1,45 @@
+name: MX sign
+
+on:
+  schedule:
+    - cron: '13 12 * * *' 
+  workflow_dispatch:
+
+jobs:
+  sign:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install curl
+        run: |
+          sudo apt-get update &&
+          sudo apt-get install curl -y
+
+      - name: Signing
+        run: |
+          curl 'https://${{ secrets.URL }}/user/checkin' \
+          -X 'POST' \
+          -H 'authority: ${{ secrets.URL }}' \
+          -H 'accept: application/json, text/javascript, */*; q=0.01' \
+          -H 'accept-language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6' \
+          -H 'content-length: 0' \
+          -H '${{ secrets.COOKIE }}' \
+          -H 'dnt: 1' \
+          -H 'origin: https://${{ secrets.URL }}' \
+          -H 'referer: https://${{ secrets.URL }}/user' \
+          -H 'sec-ch-ua: " Not;A Brand";v="99", "Microsoft Edge";v="103", "Chromium";v="103"' \
+          -H 'sec-ch-ua-mobile: ?0' \
+          -H 'sec-ch-ua-platform: "Windows"' \
+          -H 'sec-fetch-dest: empty' \
+          -H 'sec-fetch-mode: cors' \
+          -H 'sec-fetch-site: same-origin' \
+          -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36 Edg/103.0.1264.77' \
+          -H 'x-requested-with: XMLHttpRequest' \
+          --compressed
+        shell: bash
+
+
+
+
