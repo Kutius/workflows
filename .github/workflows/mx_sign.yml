@@ -44,7 +44,7 @@ jobs:
 
       - name: Convert response to UTF-8
         run: |
-          python .github/scripts/unicode_to_utf8.py < response.txt
+          python ./unicode_to_utf8.py < response.txt
 
 
 
