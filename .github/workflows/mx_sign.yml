@@ -38,6 +38,7 @@ jobs:
           -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36 Edg/103.0.1264.77' \
           -H 'x-requested-with: XMLHttpRequest' \
           -H 'charset=UTF-8' \
+          -H 'accept-charset: UTF-8' \
           --compressed
         shell: bash
 
