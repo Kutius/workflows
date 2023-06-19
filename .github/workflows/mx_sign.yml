@@ -39,9 +39,12 @@ jobs:
           -H 'x-requested-with: XMLHttpRequest' \
           -H 'charset=UTF-8' \
           -H 'accept-charset: UTF-8' \
-          --compressed
+          --compressed > response.txt
         shell: bash
 
+      - name: Convert response to UTF-8
+        run: |
+          python .github/scripts/unicode_to_utf8.py < response.txt
 
 
 
